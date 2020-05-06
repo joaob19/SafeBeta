@@ -39,7 +39,8 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
    Toolbar toolbar;
    TextView txtDataEvento,txtHoraEvento;
    EditText txtTituloEvento,txtDescricaoEvento,txtNotificarAntes;
-   Calendar custom_calendar = Calendar.getInstance();
+   Calendar calendarAlarme1 = Calendar.getInstance();
+   Calendar calendarAlarme2 = Calendar.getInstance();
    RadioGroup rgAgenda;
    int tipoNotificacao=0;
 
@@ -103,7 +104,6 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
                 String materia = spinnerMateriaevento.getSelectedItem().toString();
                 String descricao=txtDescricaoEvento.getText().toString();
 
-
                 if (data.length() > 0 && hora.length()>0 && titulo.length()>0 && tipo.length()>0 && materia.equalsIgnoreCase("Matéria")==false && tipo.equalsIgnoreCase("Tipo")==false && txtNotificarAntes.getText().toString().length()>0) {
                     int avisarAntes = Integer.parseInt(txtNotificarAntes.getText().toString());
                     if((tipoNotificacao==0 && avisarAntes>0 && avisarAntes<=59) || (tipoNotificacao==1 && avisarAntes>0 && avisarAntes<=23) || (tipoNotificacao==2 && avisarAntes>0 && avisarAntes<=7)){
@@ -115,31 +115,38 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
                         evento.setTipoEvento(tipo);
                         evento.setMateriaEvento(materia);
                         evento.setDescricao(descricao);
+                        evento.setIdAlarme1( (int) calendarAlarme1.getTimeInMillis());
 
                         switch (tipoNotificacao){
                             case 0:
-                                custom_calendar.add(Calendar.MINUTE,-avisarAntes);
+                                calendarAlarme2.add(Calendar.MINUTE,-avisarAntes);
                                 break;
                             case 1:
-                                custom_calendar.add(Calendar.HOUR_OF_DAY,-avisarAntes);
+                                calendarAlarme2.add(Calendar.HOUR_OF_DAY,-avisarAntes);
 
                                 break;
                             case 2:
-                                custom_calendar.add(Calendar.DAY_OF_MONTH,-avisarAntes);
+                                calendarAlarme2.add(Calendar.DAY_OF_MONTH,-avisarAntes);
                                 break;
                         }
 
-                        evento.setIdAlarme((int) custom_calendar.getTimeInMillis());
+                        evento.setIdAlarme2((int) calendarAlarme2.getTimeInMillis());
 
 
                         if (idEvento != -1) {
                             eventoDAO.atualizar(evento);
-                            int idAlarme = getIntent().getIntExtra("idAlarme",0);
-                            alarmManagerUtil.cancelarAlarme(idAlarme,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
-                            alarmManagerUtil.salvarAlarme(custom_calendar,evento.getIdAlarme(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            int idAlarme1 = getIntent().getIntExtra("idAlarme1",0);
+                            int idAlarme2 = getIntent().getIntExtra("idAlarme2",0);
+
+                            alarmManagerUtil.cancelarAlarme(idAlarme1,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+
+                            alarmManagerUtil.cancelarAlarme(idAlarme2,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
                         } else {
                             eventoDAO.inserirEvento(evento);
-                            alarmManagerUtil.salvarAlarme(custom_calendar,evento.getIdAlarme(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme2(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
                         }
                         finish();
                     }
@@ -190,10 +197,15 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
    }
 
    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-      custom_calendar.set(Calendar.YEAR, year);
-      custom_calendar.set(Calendar.MONTH, month);
-      custom_calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-      String data = DateFormat.getDateInstance(2).format(custom_calendar.getTime());
+      calendarAlarme1.set(Calendar.YEAR, year);
+      calendarAlarme1.set(Calendar.MONTH, month);
+      calendarAlarme1.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+      calendarAlarme2.set(Calendar.YEAR, year);
+      calendarAlarme2.set(Calendar.MONTH, month);
+      calendarAlarme2.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+      String data = DateFormat.getDateInstance(2).format(calendarAlarme1.getTime());
       txtDataEvento.setText(data);
    }
 
@@ -208,9 +220,14 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
     }
 
    public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
-      custom_calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-      custom_calendar.set(Calendar.MINUTE, minute);
-      custom_calendar.set(Calendar.SECOND, 0);
+      calendarAlarme1.set(Calendar.HOUR_OF_DAY, hourOfDay);
+      calendarAlarme1.set(Calendar.MINUTE, minute);
+      calendarAlarme1.set(Calendar.SECOND, 0);
+
+      calendarAlarme2.set(Calendar.HOUR_OF_DAY, hourOfDay);
+      calendarAlarme2.set(Calendar.MINUTE, minute);
+      calendarAlarme2.set(Calendar.SECOND, 0);
+
       txtHoraEvento.setText(hourOfDay+":"+minute);
    }
 

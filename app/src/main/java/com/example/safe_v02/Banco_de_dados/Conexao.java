@@ -14,11 +14,12 @@ public class Conexao extends SQLiteOpenHelper {
    }
 
    public void onCreate(SQLiteDatabase db) {
-      db.execSQL("create table eventos(id integer primary key ,nome varchar(50),tipo varchar(20),materia varchar(50),data varchar(50),hora varchar(10),descricao varchar(200),idAlarme int)");
+      db.execSQL("create table eventos(id integer primary key ,nome varchar(50),tipo varchar(20),materia varchar(50),data varchar(50),hora varchar(10),descricao varchar(200),idAlarme1 int,idAlarme2 int)");
       db.execSQL("create table horarios(id integer primary key  ,dia integer,horaInicio varchar(5),horaTermino varchar(5),materia varchar(50))");
       db.execSQL("create table materias(id integer primary key  ,nome varchar(50),tipoDeMedia varchar(20),qntdNotas integer,media double,notas varchar(200))");
    }
 
-   public void onUpgrade(SQLiteDatabase var1, int var2, int var3) {
+   @Override
+   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
    }
 }

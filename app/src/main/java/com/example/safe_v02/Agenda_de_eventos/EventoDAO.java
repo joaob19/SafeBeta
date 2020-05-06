@@ -25,7 +25,8 @@ public class EventoDAO {
       values.put("data", evento.getDataEvento());
       values.put("hora", evento.getHorarioevento());
       values.put("descricao", evento.getDescricao());
-      values.put("idalarme", evento.getIdAlarme());
+      values.put("idAlarme1", evento.getIdAlarme1());
+      values.put("idAlarme2", evento.getIdAlarme2());
       SQLiteDatabase banco = this.banco;
       String[] id = new String[]{Integer.toString(evento.getId())};
       banco.update("eventos", values, "id=?", id);
@@ -45,13 +46,14 @@ public class EventoDAO {
       values.put("data", evento.getDataEvento());
       values.put("hora", evento.getHorarioevento());
       values.put("descricao", evento.getDescricao());
-      values.put("idalarme", evento.getIdAlarme());
+      values.put("idAlarme1", evento.getIdAlarme1());
+      values.put("idAlarme2", evento.getIdAlarme2());
       return this.banco.insert("eventos", (String)null, values);
    }
 
    public ArrayList obterTodos() {
       ArrayList eventos = new ArrayList();
-      Cursor cursor = this.banco.query("eventos", new String[]{"id", "nome", "data", "tipo", "materia", "hora","descricao","idAlarme"}, (String)null, (String[])null, (String)null, (String)null, (String)null);
+      Cursor cursor = this.banco.query("eventos", new String[]{"id", "nome", "data", "tipo", "materia", "hora","descricao","idAlarme1","idAlarme2"}, (String)null, (String[])null, (String)null, (String)null, (String)null);
 
       while(cursor.moveToNext()) {
          Evento evento = new Evento();
@@ -62,7 +64,8 @@ public class EventoDAO {
          evento.setMateriaEvento(cursor.getString(4));
          evento.setHorarioevento(cursor.getString(5));
          evento.setDescricao(cursor.getString(6));
-         evento.setIdAlarme(cursor.getInt(7));
+         evento.setIdAlarme1(cursor.getInt(7));
+         evento.setIdAlarme2(cursor.getInt(8));
          eventos.add(evento);
       }
       return eventos;

@@ -5,18 +5,26 @@ import java.io.Serializable;
 public class Evento implements Serializable {
    private String dataEvento;
    private String horarioevento;
-   private int id, idAlarme;
+   private int id, idAlarme1,idAlarme2;
    private String materiaEvento;
    private String tipoEvento;
    private String tituloEvento;
    private String descricao;
 
-   public int getIdAlarme() {
-      return idAlarme;
+   public int getIdAlarme2() {
+      return idAlarme2;
    }
 
-   public void setIdAlarme(int idAlarme) {
-      this.idAlarme = idAlarme;
+   public void setIdAlarme2(int idAlarme2) {
+      this.idAlarme2 = idAlarme2;
+   }
+
+   public int getIdAlarme1() {
+      return idAlarme1;
+   }
+
+   public void setIdAlarme1(int idAlarme1) {
+      this.idAlarme1 = idAlarme1;
    }
 
    public String getDescricao() {

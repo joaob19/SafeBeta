@@ -59,11 +59,13 @@ public class MeusEventos extends AppCompatActivity {
             builder.setNegativeButton("Não", (android.content.DialogInterface.OnClickListener)null);
             builder.setPositiveButton("Sim", new android.content.DialogInterface.OnClickListener() {
                public void onClick(DialogInterface dialog, int which) {
-                   int idEvento = eventos.get(position).getIdAlarme();
+                   int idAlarme1 = eventos.get(position).getIdAlarme1();
+                   int idAlarme2 = eventos.get(position).getIdAlarme2();
                    String titulo=eventos.get(position).getTituloEvento();
                    String descricao=eventos.get(position).getDataEvento()+" "+eventos.get(position).getHorarioevento();
                    AlarmManagerUtil alarmManagerUtil = new AlarmManagerUtil(MeusEventos.this);
-                   alarmManagerUtil.cancelarAlarme(idEvento,titulo,descricao);
+                   alarmManagerUtil.cancelarAlarme(idAlarme1,titulo,descricao);
+                   alarmManagerUtil.cancelarAlarme(idAlarme2,titulo,descricao);
                    eventoDAO.excluir(eventos.get(position));
                    carregarEventos();
                    verificarEventtos();
@@ -77,7 +79,8 @@ public class MeusEventos extends AppCompatActivity {
          public void onItemClick(AdapterView parent, View view, int position, long id) {
             Intent intent = new Intent(MeusEventos.this, InfoEvento.class);
             intent.putExtra("idEvento", position);
-            intent.putExtra("idAlarme", eventos.get(position).getIdAlarme());
+            intent.putExtra("idAlarme1", eventos.get(position).getIdAlarme1());
+            intent.putExtra("idAlarme2", eventos.get(position).getIdAlarme2());
             startActivity(intent);
          }
       });

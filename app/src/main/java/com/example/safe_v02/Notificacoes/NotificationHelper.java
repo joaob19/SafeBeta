@@ -15,7 +15,7 @@ import com.example.safe_v02.R;
 
 public class NotificationHelper extends ContextWrapper {
 
-    public static final String CHANNEL_ID="Canal principal";
+    public static final String CHANNEL_ID="Eventos";
     private NotificationManager mManager;
 
     public NotificationHelper(Context context) {
