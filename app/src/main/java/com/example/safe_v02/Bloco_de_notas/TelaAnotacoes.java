@@ -16,6 +16,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.safe_v02.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,32 +28,28 @@ public class TelaAnotacoes extends AppCompatActivity {
 
     ListView listView;
     FloatingActionButton btnAdd;
-    static ArrayList<String> notas = new ArrayList<String>();
-    static ArrayAdapter<String> adapter = null;
+    static ArrayList<Nota> notas;
+    static AdapterNota adapter;
     Toolbar toolbar;
-
     TextView txtAviso;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_anotacoes);
-        toolbar = findViewById(R.id.toolbarBn1);
+
+        toolbar = findViewById(R.id.toolbar_bn1);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Minhas anotações");
 
-        btnAdd = (FloatingActionButton) findViewById(R.id.btnAdd);
-        listView = (ListView) findViewById(R.id.Notas);
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
-        HashSet<String> set = (HashSet<String>) sharedPreferences.getStringSet("notas", null);
+        txtAviso = (TextView)findViewById(R.id.txtAvisoAnotacoes);
+        listView = (ListView) findViewById(R.id.lista_de_notas);
 
-        if(set!=null){
-            notas = new ArrayList(set);
+        carregarNotas();
 
-        }
 
         //Chama a tela de edição de texto ao clicar no botão add
+        btnAdd = (FloatingActionButton) findViewById(R.id.btnAddNota);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,25 +59,18 @@ public class TelaAnotacoes extends AppCompatActivity {
         });
 
 
-        //Passa o adapter para a listView
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, notas);
-        listView.setAdapter(adapter);
-
-        txtAviso = (TextView)findViewById(R.id.txtAvisoAnotacoes);
-        verificarAnotacoes();
-
         //Caso seja exercido um toque curto em um itemda listView, ele será aberto na tela de edição
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(TelaAnotacoes.this, TelaEditorTexto.class);
-                intent.putExtra("noteId",position);
+                intent.putExtra("noteId",notas.get(position).getId());
                 startActivity(intent);
             }
         });
 
         //Caso seja exercido um toque longo em um item da listView, será exibido um dialog perguntando se deseja apagar o item
-        listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder adb= new AlertDialog.Builder(TelaAnotacoes.this);
@@ -92,43 +82,44 @@ public class TelaAnotacoes extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        notas.remove(position);
-                        adapter.notifyDataSetInvalidated();
-                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
-                        HashSet<String> set = new HashSet(notas);
-                        sharedPreferences.edit().putStringSet("notas",set).apply();
-                        verificarAnotacoes();
+                        NotasDAO notasDAO = new NotasDAO(TelaAnotacoes.this);
+                        notasDAO.excluirNota(notas.get(position));
+                        carregarNotas();
+                        Toast.makeText(TelaAnotacoes.this, "Nota excluída", Toast.LENGTH_SHORT).show();
                     }
                 });
                 adb.show();
                 return true;
             }
         });
-
     }
 
-    // Faz com que o botão voltar da toolbar funcione igual ao do celular
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return false;
-    }
-
-    public void verificarAnotacoes(){
-        if(notas.size()<=0){
-            txtAviso.setText(R.string.MsgAnotacoes);
+    public void carregarNotas(){
+        NotasDAO notasDAO = new NotasDAO(TelaAnotacoes.this);
+        if (notasDAO.obterNotas().size()>0){
+            notas = new ArrayList<Nota>(notasDAO.obterNotas());
         }
         else{
-            txtAviso.setText(" ");
+            notas = new ArrayList<Nota>();
         }
+        adapter = new AdapterNota(this,notas);
+        listView.setAdapter(adapter);
+        verificarNotas();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        verificarAnotacoes();
+        carregarNotas();
     }
+
+    public void verificarNotas(){
+        if(notas.size()>0){
+            txtAviso.setText(" ");
+        }
+        else{
+            txtAviso.setText("Para adicionar uma nova anotação clique nota botão + no canto inferior direito.");
+        }
+    }
+
 }

@@ -10,7 +10,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -150,7 +152,6 @@ public static String nome="Nome de usuário",email="Email",curso="O que está cu
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
                 fotoDePerfil.setImageBitmap(bitmap);
-                MainActivity.foto_usuario=bitmap;
                 SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
                 sharedPreferences.edit().putString("foto_perfil", codificarParaBase64(bitmap)).apply();
 
@@ -177,11 +178,11 @@ public static String nome="Nome de usuário",email="Email",curso="O que está cu
 
     public void carregarPerfil(){
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
-        HashSet<String> setDeInformacoes = (HashSet<String>) sharedPreferences.getStringSet("informacoesPerfil", null);
         String SpNome = sharedPreferences.getString("nome",null);
         String SpEmail = sharedPreferences.getString("email",null);
         String SpCurso = sharedPreferences.getString("curso",null);
-        String  SpInstituicao = sharedPreferences.getString("instituicao",null);
+        String SpInstituicao = sharedPreferences.getString("instituicao",null);
+        String Spfoto_perfil = sharedPreferences.getString("foto_perfil",null);
 
         if((SpNome!=null)&&(SpNome.length()>0)){
             nome=SpNome;
@@ -195,8 +196,8 @@ public static String nome="Nome de usuário",email="Email",curso="O que está cu
         if((SpInstituicao!=null)&&(SpInstituicao.length()>0)){
             instituicao=SpInstituicao;
         }
-        if(MainActivity.foto_usuario!=null){
-            fotoDePerfil.setImageBitmap(MainActivity.foto_usuario);
+        if((Spfoto_perfil!=null)&&(Spfoto_perfil.length()>0)){
+            fotoDePerfil.setImageBitmap(decodificarBase64(Spfoto_perfil));
         }
 
         txtNome.setText(nome);
@@ -218,5 +219,12 @@ public static String nome="Nome de usuário",email="Email",curso="O que está cu
         return imageEncoded;
     }
 
+    // Converte a imagem de usuário que é salva em integer de base 64 para bitmap
+    public static Bitmap decodificarBase64(String input) {
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
     }
+
+}
 

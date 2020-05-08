@@ -142,7 +142,7 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
                             alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
 
                             alarmManagerUtil.cancelarAlarme(idAlarme2,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
-                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme2(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
                         } else {
                             eventoDAO.inserirEvento(evento);
                             alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));

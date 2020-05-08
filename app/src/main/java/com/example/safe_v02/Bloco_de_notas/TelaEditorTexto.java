@@ -9,48 +9,58 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.safe_v02.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.HashSet;
 
 public class TelaEditorTexto extends AppCompatActivity {
     FloatingActionButton btnSalvar;
-    static EditText txtNota;
+    EditText txtTexto,txtTitulo;
     Toolbar toolbar;
+    NotasDAO notasDAO;
+    Nota nota = new Nota();
+    int idNota;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_editor_texto);
-        txtNota = (EditText)findViewById(R.id.txtNota);
+
+        txtTexto = (EditText)findViewById(R.id.txtNota);
+        txtTitulo = (EditText)findViewById(R.id.txtTituloNota);
         btnSalvar = (FloatingActionButton)findViewById(R.id.btnSalvar);
-        toolbar = findViewById(R.id.toolbarBn2);
+        toolbar = findViewById(R.id.toolbar_bn2);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Escreva sua anotação");
 
+        notasDAO = new NotasDAO(TelaEditorTexto.this);
+
+        Intent intent = getIntent();
+        idNota  = intent.getIntExtra("noteId",-1);
+        if (idNota>0){
+            carregarNota(idNota);
+        }
+
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = getIntent();
-                int noteId = intent.getIntExtra("noteId",-1);
-                String textoNota = txtNota.getText().toString();
 
-
-                if (textoNota.length() > 0) {
-                    txtNota.setText("");
-                    txtNota.findFocus();
-                    if(noteId!=-1){
-                        TelaAnotacoes.notas.set(noteId,textoNota);
-                        TelaAnotacoes.adapter.notifyDataSetInvalidated();
+                if (txtTexto.getText().toString().length() > 0 && txtTitulo.getText().toString().length()>0) {
+                    if(idNota==-1){
+                        nota.setTitulo(txtTitulo.getText().toString());
+                        nota.setTexto(txtTexto.getText().toString());
+                        notasDAO.inserirNota(nota);
+                        Toast.makeText(TelaEditorTexto.this, "Nota salva", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        TelaAnotacoes.notas.add(textoNota);
-                        TelaAnotacoes.adapter.notifyDataSetInvalidated();
+                        nota.setTitulo(txtTitulo.getText().toString());
+                        nota.setTexto(txtTexto.getText().toString());
+                        notasDAO.atualizarNota(nota);
+                        Toast.makeText(TelaEditorTexto.this, "Nota alterada", Toast.LENGTH_SHORT).show();
                     }
-                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
-                    HashSet<String> set = new HashSet(TelaAnotacoes.notas);
-                    sharedPreferences.edit().putStringSet("notas",set).apply();
                     finish();
                 }
                 else{
@@ -59,13 +69,6 @@ public class TelaEditorTexto extends AppCompatActivity {
             }
         });
 
-        // quando o usuário clica em uma anotação ela abre na tela de edição
-        Intent intent = getIntent();
-        int noteId = intent.getIntExtra("noteId",-1);
-        if(noteId!=-1){
-            txtNota.setText(TelaAnotacoes.notas.get(noteId));
-
-        }
     }
 
 
@@ -83,31 +86,31 @@ public class TelaEditorTexto extends AppCompatActivity {
     //Veficia se há texto texto para ser salvo se o usuário clicar no botão voltar. Caso haja ele salva.
     @Override
     public void onBackPressed() {
-        Intent intent = getIntent();
-        int noteId = intent.getIntExtra("noteId",-1);
-        String textoNota = txtNota.getText().toString();
 
-        if (textoNota.length() > 0) {
-            txtNota.setText("");
-            txtNota.findFocus();
-            if(noteId!=-1){
-                TelaAnotacoes.notas.set(noteId,textoNota);
-                TelaAnotacoes.adapter.notifyDataSetInvalidated();
+        if (txtTexto.getText().toString().length() > 0 && txtTitulo.getText().toString().length()>0) {
+            if(idNota==-1){
+                nota.setTitulo(txtTitulo.getText().toString());
+                nota.setTexto(txtTexto.getText().toString());
+                notasDAO.inserirNota(nota);
+                Toast.makeText(TelaEditorTexto.this, "Nota salva", Toast.LENGTH_SHORT).show();
             }
             else{
-                TelaAnotacoes.notas.add(textoNota);
-                TelaAnotacoes.adapter.notifyDataSetInvalidated();
+                nota.setTitulo(txtTitulo.getText().toString());
+                nota.setTexto(txtTexto.getText().toString());
+                notasDAO.atualizarNota(nota);
+                Toast.makeText(TelaEditorTexto.this, "Nota alterada", Toast.LENGTH_SHORT).show();
             }
-            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
-            HashSet<String> set = new HashSet(TelaAnotacoes.notas);
-            sharedPreferences.edit().putStringSet("notas",set).apply();
             finish();
         }
         else{
             super.onBackPressed();
-            finish();
-
         }
-
     }
+
+    public void carregarNota(int idNota){
+        nota = notasDAO.obterNota(idNota);
+        txtTexto.setText(nota.getTexto());
+        txtTitulo.setText(nota.getTitulo());
+    }
+
 }

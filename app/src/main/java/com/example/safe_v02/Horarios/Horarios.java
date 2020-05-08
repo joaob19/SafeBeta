@@ -1,29 +1,28 @@
 package com.example.safe_v02.Horarios;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.safe_v02.Horarios.DialogCriarHorario.DialogCriarHorarioListener;
 import com.example.safe_v02.R;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
+public class Horarios extends AppCompatActivity implements AdapterView.OnItemSelectedListener, DialogCriarHorario.DialogCriarHorarioListener {
 
-public class Horarios extends Fragment implements AdapterView.OnItemSelectedListener, DialogCriarHorarioListener {
+    Toolbar toolbar;
     Spinner spinnerDiasDaSemana;
     ListView listaHorarios;
     Button btnAdicionaraula;
@@ -34,29 +33,35 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
     ArrayList<Horario> horario_sexta = new ArrayList<Horario>();
 
     static ArrayAdapter<Horario> adapter_lista_horarios = null;
-    @Nullable
+
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_horarios);
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Criando view para o fragmento
-        View view = inflater.inflate(R.layout.fragment_horarios, container, false);
+        toolbar = findViewById(R.id.toolbarHorarios);
 
-        spinnerDiasDaSemana=(Spinner)view.findViewById(R.id.spinnerDiasDaSemana);
-        listaHorarios=(ListView)view.findViewById(R.id.listaHorarios);
-        ArrayAdapter<CharSequence> adapter_spinner = ArrayAdapter.createFromResource(this.getActivity(),R.array.horarios_array, android.R.layout.simple_spinner_item);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Horários de aula");
+
+        spinnerDiasDaSemana=(Spinner)findViewById(R.id.spinnerDiasDaSemana);
+        listaHorarios=(ListView)findViewById(R.id.listaHorarios);
+        ArrayAdapter<CharSequence> adapter_spinner = ArrayAdapter.createFromResource(this,R.array.horarios_array, android.R.layout.simple_spinner_item);
         adapter_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerDiasDaSemana.setAdapter(adapter_spinner);
         spinnerDiasDaSemana.setOnItemSelectedListener(this);
 
         carregarHorarios();
 
-        btnAdicionaraula = (Button)view.findViewById(R.id.btnAdicionaraula);
+        btnAdicionaraula = (Button)findViewById(R.id.btnAdicionaraula);
         btnAdicionaraula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String dia=spinnerDiasDaSemana.getSelectedItem().toString();
                 if(dia.equalsIgnoreCase("Selecione o dia")) {
-                    Toast.makeText(getActivity().getApplicationContext(),"Você deve selecionar um dia para adicionar uma aula", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Você deve selecionar um dia para adicionar uma aula", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     abrirDialogCriarHorario();
@@ -67,14 +72,14 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
         listaHorarios.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                AlertDialog.Builder opcoes = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder opcoes = new AlertDialog.Builder(Horarios.this);
                 opcoes.setTitle("O que deseja fazer?")
                         .setItems(R.array.opcoes_array, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // O "which" contem a posição do indice do item selecionado
                                 switch (which){
                                     case 0:
-                                        AlertDialog.Builder adb= new AlertDialog.Builder(getActivity());
+                                        AlertDialog.Builder adb= new AlertDialog.Builder(Horarios.this);
                                         adb.setTitle("Excluir");
                                         adb.setMessage("Deseja excluir esse horário?");
                                         final int positionToMove = position;
@@ -100,7 +105,6 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
 
 //Verifica em que dia da semana está e mostra os horários desse dia
         verificarODia();
-        return view;
     }
 
     @Override
@@ -111,23 +115,23 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
                 listaHorarios.setAdapter(null);
                 break;
             case "Segunda-feira":
-                adapter_lista_horarios = new HorarioAdapter(getActivity(),horario_segunda);
+                adapter_lista_horarios = new HorarioAdapter(this,horario_segunda);
                 listaHorarios.setAdapter(adapter_lista_horarios);
                 break;
             case "Terça-feira":
-                adapter_lista_horarios = new HorarioAdapter(getActivity(),horario_terca);
+                adapter_lista_horarios = new HorarioAdapter(this,horario_terca);
                 listaHorarios.setAdapter(adapter_lista_horarios);
                 break;
             case "Quarta-feira":
-                adapter_lista_horarios = new HorarioAdapter(getActivity(),horario_quarta);
+                adapter_lista_horarios = new HorarioAdapter(this,horario_quarta);
                 listaHorarios.setAdapter(adapter_lista_horarios);
                 break;
             case "Quinta-feira":
-                adapter_lista_horarios = new HorarioAdapter(getActivity(),horario_quinta);
+                adapter_lista_horarios = new HorarioAdapter(this,horario_quinta);
                 listaHorarios.setAdapter(adapter_lista_horarios);
                 break;
             case "Sexta-feira":
-                adapter_lista_horarios = new HorarioAdapter(getActivity(),horario_sexta);
+                adapter_lista_horarios = new HorarioAdapter(this,horario_sexta);
                 listaHorarios.setAdapter(adapter_lista_horarios);
                 break;
         }
@@ -141,7 +145,7 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
 
     public void excluirHorario(final int position){
         String dia=spinnerDiasDaSemana.getSelectedItem().toString();
-        HorarioDAO horarioDAO = new HorarioDAO(getActivity());
+        HorarioDAO horarioDAO = new HorarioDAO(this);
         switch(dia){
             case "Segunda-feira":
                 horarioDAO.excluir(horario_segunda.get(position));
@@ -191,15 +195,13 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
                 break;
         }
         DialogCriarHorario dialog = new DialogCriarHorario(horario);
-        dialog.setTargetFragment(Horarios.this,1);
-        dialog.show(getActivity().getSupportFragmentManager(),"Editar horário");
+        dialog.show(getSupportFragmentManager(),"Editar horário");
     }
 
 
     public void abrirDialogCriarHorario(){
         DialogCriarHorario dialog = new DialogCriarHorario(null);
-        dialog.setTargetFragment(Horarios.this,1);
-        dialog.show(getActivity().getSupportFragmentManager(),"Criar horário");
+        dialog.show(getSupportFragmentManager(),"Criar horário");
     }
 
     @Override
@@ -233,12 +235,12 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
                     adapter_lista_horarios.notifyDataSetChanged();
                     break;
             }
-            HorarioDAO horarioDAO = new HorarioDAO(getActivity());
+            HorarioDAO horarioDAO = new HorarioDAO(this);
             horarioDAO.inserirHorario(horario);
         }
     }
 
-//Verifica em que dia da semana está e mostra os horários desse dia
+    //Verifica em que dia da semana está e mostra os horários desse dia
     public void verificarODia(){
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
@@ -269,27 +271,37 @@ public class Horarios extends Fragment implements AdapterView.OnItemSelectedList
     }
 
     public void carregarHorarios(){
-        HorarioDAO horarioDAO = new HorarioDAO(getActivity());
-            ArrayList<Horario> horarios = new ArrayList<Horario>(horarioDAO.obterTodos());
-            for(int i=0;i<horarios.size();i++){
-                switch(horarios.get(i).getDia()) {
-                    case 1:
-                        horario_segunda.add(horarios.get(i));
-                        break;
-                    case 2:
-                        horario_terca.add(horarios.get(i));
-                        break;
-                    case 3:
-                        horario_quarta.add(horarios.get(i));
-                        break;
-                    case 4:
-                        horario_quinta.add(horarios.get(i));
-                        break;
-                    case 5:
-                        horario_sexta.add(horarios.get(i));
-                        break;
-                }
+        HorarioDAO horarioDAO = new HorarioDAO(this);
+        ArrayList<Horario> horarios = new ArrayList<Horario>(horarioDAO.obterTodos());
+        for(int i=0;i<horarios.size();i++){
+            switch(horarios.get(i).getDia()) {
+                case 1:
+                    horario_segunda.add(horarios.get(i));
+                    break;
+                case 2:
+                    horario_terca.add(horarios.get(i));
+                    break;
+                case 3:
+                    horario_quarta.add(horarios.get(i));
+                    break;
+                case 4:
+                    horario_quinta.add(horarios.get(i));
+                    break;
+                case 5:
+                    horario_sexta.add(horarios.get(i));
+                    break;
             }
+        }
+    }
+
+    // Faz com que o botão voltar da toolbar funcione igual ao do celular
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
     }
 
 }

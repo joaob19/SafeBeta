@@ -115,7 +115,6 @@ public class CriarMateriaDialog extends AppCompatDialogFragment {
 
    public void onAttach(Context context) {
       super.onAttach(context);
-
       try {
          this.listener = (CriarMateriaDialog.DialogCriarMateriaListener)context;
       } catch (ClassCastException e) {

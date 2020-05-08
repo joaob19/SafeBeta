@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Bloco_de_notas.TelaEditorTexto">
+    tools:context=".View.TelaEditor">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_bn2"
+        android:id="@+id/toolbarBn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/AzulMedio"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:background="@color/colorPrimaryDark"
         />
 
     <EditText
@@ -22,7 +20,7 @@
         android:inputType="textCapSentences|textCapWords"
         android:hint="Titulo"
         android:padding="10dp"
-        android:layout_below="@+id/toolbar_bn2"/>
+        android:layout_below="@+id/toolbarBn2"/>
 
     <EditText
         android:id="@+id/txtNota"
@@ -41,12 +39,12 @@
         android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_gravity="bottom"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="29dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/AzulMedio"
-        app:srcCompat="@drawable/ic_done_black_24dp" />
-</android.widget.RelativeLayout>
+        app:srcCompat="@drawable/ic_done_24dp" />
+
+</RelativeLayout>

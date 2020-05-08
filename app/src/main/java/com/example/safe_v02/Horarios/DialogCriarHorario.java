@@ -133,9 +133,12 @@ public class DialogCriarHorario extends AppCompatDialogFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            listener = (DialogCriarHorarioListener) getTargetFragment();
+            this.listener = (DialogCriarHorario.DialogCriarHorarioListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + "deve implementar DialogCriarHorario");
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(context.toString());
+            stringBuilder.append("Deve implementar DialogCriarHorario");
+            throw new ClassCastException(stringBuilder.toString());
         }
     }
 
