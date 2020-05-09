@@ -22,46 +22,40 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:text="Suas notas:"
         android:layout_below="@id/toolbarTelaNotas"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="20dp"
+        android:padding="10dp"
     />
 
     <TextView
         android:id="@+id/txtMediaDasNotas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnAddNota"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
+        android:padding="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_alignParentBottom="true"
         android:text="Média:"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-    <Button
-        android:id="@+id/btnAddNota"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="ADICIONAR NOTA"
-        android:textColor="@color/Branco"
-        android:backgroundTint="@color/AzulClaro"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="10dp"
-        />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/listaDeNotas"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
+        android:padding="10dp"
         android:layout_below="@id/textView000"
         android:layout_above="@id/txtMediaDasNotas"
         />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddNota"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/AzulMedio"
+        android:onClick="abrirDialogCriarMateria"
+        app:srcCompat="@drawable/ic_add_24dp" />
 
 </android.widget.RelativeLayout>

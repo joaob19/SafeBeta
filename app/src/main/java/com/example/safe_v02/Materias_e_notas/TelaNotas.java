@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.safe_v02.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 public class TelaNotas extends AppCompatActivity implements CriarNotaDialog.DialogCriarNotaListener {
    static ArrayAdapter adapter_notas;
    ArrayList<Double> array_notas = new ArrayList();
-   Button btnAddNota;
+   FloatingActionButton btnAddNota;
    long idMateria;
    ListView listaDeNotas;
    Materia materia = new Materia();
@@ -68,7 +69,7 @@ public class TelaNotas extends AppCompatActivity implements CriarNotaDialog.Dial
             builder.show();
          }
       });
-      btnAddNota = (Button)findViewById(R.id.btnAddNota);
+      btnAddNota = (FloatingActionButton)findViewById(R.id.btnAddNota);
       btnAddNota.setOnClickListener(new android.view.View.OnClickListener() {
          public void onClick(View view) {
             //Verifica se a quantidade de notas da matéria ja foi lançada.

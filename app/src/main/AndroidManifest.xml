@@ -12,8 +12,6 @@
         android:roundIcon="@mipmap/ic_safe_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Estatisticas.Estatisticas"
-            android:parentActivityName=".Main.MainActivity"></activity>
         <activity
             android:name=".Horarios.Horarios"
             android:parentActivityName=".Main.MainActivity" />

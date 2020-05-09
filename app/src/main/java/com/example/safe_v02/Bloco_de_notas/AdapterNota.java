@@ -31,7 +31,12 @@ public class AdapterNota extends ArrayAdapter {
         View view = inflater.inflate(R.layout.layout_anotacao,null);
 
         TextView txtNota = (TextView)view.findViewById(R.id.txtLayoutNota);
+        TextView txtTexto = (TextView)view.findViewById(R.id.txtLayoutNota2);
+        TextView txtDataModificacao = (TextView)view.findViewById(R.id.txtLayoutNota3);
+
         txtNota.setText(notas.get(position).getTitulo());
+        txtTexto.setText(notas.get(position).getTexto());
+        txtDataModificacao.setText(notas.get(position).getDataModificacao());
 
         return  view;
     }

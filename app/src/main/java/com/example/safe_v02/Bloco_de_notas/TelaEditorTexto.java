@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 import com.example.safe_v02.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 
 public class TelaEditorTexto extends AppCompatActivity {
@@ -47,8 +52,10 @@ public class TelaEditorTexto extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (txtTexto.getText().toString().length() > 0 && txtTitulo.getText().toString().length()>0) {
+                if (txtTexto.getText().toString().length() > 0 && txtTitulo.getText().toString().length()>0){
+                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat("dd/MMM/y kk:m");
+                    nota.setDataModificacao(dateFormat.format(date));
                     if(idNota==-1){
                         nota.setTitulo(txtTitulo.getText().toString());
                         nota.setTexto(txtTexto.getText().toString());
@@ -88,6 +95,9 @@ public class TelaEditorTexto extends AppCompatActivity {
     public void onBackPressed() {
 
         if (txtTexto.getText().toString().length() > 0 && txtTitulo.getText().toString().length()>0) {
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MMM/y kk:m");
+            nota.setDataModificacao(dateFormat.format(date));
             if(idNota==-1){
                 nota.setTitulo(txtTitulo.getText().toString());
                 nota.setTexto(txtTexto.getText().toString());
@@ -106,6 +116,11 @@ public class TelaEditorTexto extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    public void salvarNota(){
+
+    }
+
 
     public void carregarNota(int idNota){
         nota = notasDAO.obterNota(idNota);

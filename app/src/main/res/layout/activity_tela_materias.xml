@@ -16,29 +16,28 @@
 
         />
 
-    <Button
-        android:id="@+id/btnAdicionarMateria"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="ADICIONAR MATÉRIA"
-        android:textColor="@color/Branco"
-        android:background="@drawable/bg_redondo"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="10dp"
-        android:onClick="abrirDialogCriarMateria"
-        />
     <ListView
         android:id="@+id/lista_de_materias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbarControleNotas"
-        android:layout_above="@id/btnAdicionarMateria"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAdicionarMateria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="@color/AzulMedio"
+        android:onClick="abrirDialogCriarMateria"
+        app:srcCompat="@drawable/ic_add_24dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,6 +45,5 @@
         android:id="@+id/txtAvisoMaterias"
         android:gravity="center"
         android:layout_centerInParent="true"/>
-
 
 </RelativeLayout>

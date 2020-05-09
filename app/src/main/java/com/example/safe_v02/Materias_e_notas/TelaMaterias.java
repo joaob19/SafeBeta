@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
@@ -24,16 +23,10 @@ import java.util.ArrayList;
 public class TelaMaterias extends AppCompatActivity implements CriarMateriaDialog.DialogCriarMateriaListener {
    public static ArrayList<Materia> array_materias = new ArrayList();
    ArrayAdapter adapter_materias = null;
-   Button btnAdicionarMateria;
    ListView lista_de_materias;
    MateriaDAO materiaDAO;
    Toolbar toolbar;
    TextView txtAviso;
-
-   public void abrirDialogCriarMateria(View view) {
-      CriarMateriaDialog dialog = new CriarMateriaDialog(null);
-      dialog.show(getSupportFragmentManager(),"Criar matéria");
-   }
 
    protected void onCreate(Bundle bundle) {
       super.onCreate(bundle);
@@ -42,7 +35,6 @@ public class TelaMaterias extends AppCompatActivity implements CriarMateriaDialo
       setSupportActionBar(toolbar);
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setTitle("Suas matérias");
-      btnAdicionarMateria = (Button)findViewById(R.id.btnAdicionarMateria);
       materiaDAO = new MateriaDAO(this);
       lista_de_materias = (ListView)findViewById(R.id.lista_de_materias);
       array_materias = materiaDAO.obterTodas();
@@ -99,12 +91,16 @@ public class TelaMaterias extends AppCompatActivity implements CriarMateriaDialo
       });
    }
 
+   public void abrirDialogCriarMateria(View view) {
+      CriarMateriaDialog dialog = new CriarMateriaDialog(null);
+      dialog.show(getSupportFragmentManager(),"Criar matéria");
+   }
+
    //Interface que verifica quando o usuário clica no botão salvar do dialog de crição de matéria
    //e em seguida, salva a matéria no banco caso o retorno não seja nulo
    public void salvarMateria(Materia materia) {
       if (materia != null) {
          materiaDAO.inserirMateria(materia);
-         lista_de_materias = (ListView)findViewById(R.id.lista_de_materias);
          array_materias = materiaDAO.obterTodas();
          adapter_materias = new MateriaAdapter(this, array_materias);
          lista_de_materias.setAdapter(adapter_materias);
@@ -126,5 +122,8 @@ public class TelaMaterias extends AppCompatActivity implements CriarMateriaDialo
    protected void onResume() {
       super.onResume();
       verificarMaterias();
+      array_materias = materiaDAO.obterTodas();
+      adapter_materias = new MateriaAdapter(this, array_materias);
+      lista_de_materias.setAdapter(adapter_materias);
    }
 }

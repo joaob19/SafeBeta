@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.example.safe_v02.Agenda_de_eventos.MeusEventos;
 import com.example.safe_v02.Bloco_de_notas.TelaAnotacoes;
-import com.example.safe_v02.Estatisticas.Estatisticas;
 import com.example.safe_v02.Ferramentas_de_calculo.InicioCalculadora;
 import com.example.safe_v02.GoogleTradutor.GoogleTradutor;
 import com.example.safe_v02.Horarios.Horarios;
@@ -41,10 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.card_anotacoes:
                 intent = new Intent(MainActivity.this,TelaAnotacoes.class);
-                startActivity(intent);
-                break;
-            case R.id.card_estatisticas:
-                intent = new Intent(MainActivity.this, Estatisticas.class);
                 startActivity(intent);
                 break;
             case R.id.card_ferramentas_de_calculo:

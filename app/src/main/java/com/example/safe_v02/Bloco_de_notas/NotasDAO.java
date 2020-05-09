@@ -24,6 +24,7 @@ public class NotasDAO {
         ContentValues values = new ContentValues();
         values.put("titulo",nota.getTitulo());
         values.put("texto",nota.getTexto());
+        values.put("dataModificacao",nota.getDataModificacao());
         return this.banco.insert("notas",null, values);
     }
 
@@ -39,13 +40,14 @@ public class NotasDAO {
 
         ArrayList<Nota> notas = new ArrayList<>();
         SQLiteDatabase banco = this.banco;
-        Cursor cursor = banco.query("notas", new String[]{"id","titulo","texto"}, (String)null, (String[])null, (String)null, (String)null, (String)null);
+        Cursor cursor = banco.query("notas", new String[]{"id","titulo","texto","dataModificacao"}, (String)null, (String[])null, (String)null, (String)null, (String)null);
 
         while (cursor.moveToNext()){
             Nota nota = new Nota();
             nota.setId(cursor.getInt(0));
             nota.setTitulo(cursor.getString(1));
             nota.setTexto(cursor.getString(2));
+            nota.setDataModificacao(cursor.getString(3));
             notas.add(nota);
         }
 
@@ -57,6 +59,7 @@ public class NotasDAO {
         values.put("id",nota.getId());
         values.put("titulo",nota.getTitulo());
         values.put("texto",nota.getTexto());
+        values.put("dataModificacao",nota.getDataModificacao());
         SQLiteDatabase banco = this.banco;
         String[] id = new String[]{Integer.toString(nota.getId())};
         banco.update("notas", values, "id=?", id);
@@ -64,7 +67,7 @@ public class NotasDAO {
 
     public Nota obterNota(int id){
         SQLiteDatabase banco = this.banco;
-        Cursor cursor = banco.query("notas", new String[]{"id","titulo","texto"}, (String)null, (String[])null, (String)null, (String)null, (String)null);
+        Cursor cursor = banco.query("notas", new String[]{"id","titulo","texto","dataModificacao"}, (String)null, (String[])null, (String)null, (String)null, (String)null);
         Nota nota = new Nota();
 
         while (cursor.moveToNext()){
@@ -72,6 +75,7 @@ public class NotasDAO {
                 nota.setId(cursor.getInt(0));
                 nota.setTitulo(cursor.getString(1));
                 nota.setTexto(cursor.getString(2));
+                nota.setDataModificacao(cursor.getString(3));
             }
         }
 

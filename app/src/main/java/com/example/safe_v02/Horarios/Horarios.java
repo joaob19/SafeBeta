@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.safe_v02.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,7 +26,7 @@ public class Horarios extends AppCompatActivity implements AdapterView.OnItemSel
     Toolbar toolbar;
     Spinner spinnerDiasDaSemana;
     ListView listaHorarios;
-    Button btnAdicionaraula;
+    FloatingActionButton btnAdicionaraula;
     ArrayList<Horario> horario_segunda = new ArrayList<Horario>();
     ArrayList<Horario> horario_terca = new ArrayList<Horario>();
     ArrayList<Horario> horario_quarta = new ArrayList<Horario>();
@@ -55,7 +56,7 @@ public class Horarios extends AppCompatActivity implements AdapterView.OnItemSel
 
         carregarHorarios();
 
-        btnAdicionaraula = (Button)findViewById(R.id.btnAdicionaraula);
+        btnAdicionaraula = (FloatingActionButton)findViewById(R.id.btnAdicionaraula);
         btnAdicionaraula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

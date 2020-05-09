@@ -41,6 +41,7 @@ public class TelaAnotacoes extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_bn1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Minhas anotações");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         txtAviso = (TextView)findViewById(R.id.txtAvisoAnotacoes);
         listView = (ListView) findViewById(R.id.lista_de_notas);

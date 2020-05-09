@@ -3,16 +3,48 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="50dp"
-        android:padding="10dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:gravity="center_vertical"
-        android:id="@+id/txtLayoutNota"
-        android:text="Titulo da nota"
-        />
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/txtLayoutNota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="Titulo da nota"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtLayoutNota2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:maxLength="30"
+                android:padding="10dp"
+                android:text="Um pouco do texto..."
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+            <TextView
+                android:id="@+id/txtLayoutNota3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:padding="10dp"
+                android:text="dd/mm/aaaa hh:mm"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </LinearLayout>
