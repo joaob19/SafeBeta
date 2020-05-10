@@ -64,8 +64,8 @@ public class MeusEventos extends AppCompatActivity {
                    String titulo=eventos.get(position).getTituloEvento();
                    String descricao=eventos.get(position).getDataEvento()+" "+eventos.get(position).getHorarioevento();
                    AlarmManagerUtil alarmManagerUtil = new AlarmManagerUtil(MeusEventos.this);
-                   alarmManagerUtil.cancelarAlarme(idAlarme1,titulo,descricao);
-                   alarmManagerUtil.cancelarAlarme(idAlarme2,titulo,descricao);
+                   alarmManagerUtil.cancelarAlarme(idAlarme1,titulo,descricao,1);
+                   alarmManagerUtil.cancelarAlarme(idAlarme2,titulo,descricao,2);
                    eventoDAO.excluir(eventos.get(position));
                    carregarEventos();
                    verificarEventtos();

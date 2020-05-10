@@ -19,8 +19,17 @@ import java.util.ArrayList;
     public void onReceive(Context context, Intent intent) {
         NotificationHelper notificationHelper = new NotificationHelper(context);
         NotificationCompat.Builder nb = notificationHelper.gerarNotificacao(intent.getStringExtra("Titulo"),intent.getStringExtra("Descricao")).setAutoCancel(true);
-        int id = intent.getIntExtra("idAlarme",-1);
+        int tipoalarme = intent.getIntExtra("tipoAlarme",0);
+        int id=0;
+        if(tipoalarme==1){
+            id = intent.getIntExtra("idAlarme1",-1);
+
+        }
+        else if(tipoalarme==2){
+            id = intent.getIntExtra("idAlarme2",-1);
+        }
         notificationHelper.getManager().notify(id, nb.build());
+
     }
 
 //    public void excluirDoBanco(Context context,int id){

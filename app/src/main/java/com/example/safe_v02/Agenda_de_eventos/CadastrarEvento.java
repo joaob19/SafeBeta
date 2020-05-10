@@ -138,15 +138,15 @@ public class CadastrarEvento<Caldendar> extends AppCompatActivity implements OnD
                             int idAlarme1 = getIntent().getIntExtra("idAlarme1",0);
                             int idAlarme2 = getIntent().getIntExtra("idAlarme2",0);
 
-                            alarmManagerUtil.cancelarAlarme(idAlarme1,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
-                            alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.cancelarAlarme(idAlarme1,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()),1);
+                            alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()),1);
 
-                            alarmManagerUtil.cancelarAlarme(idAlarme2,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
-                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme2(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.cancelarAlarme(idAlarme2,evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()),2);
+                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme2(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()),2);
                         } else {
                             eventoDAO.inserirEvento(evento);
-                            alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
-                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme2(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()));
+                            alarmManagerUtil.salvarAlarme(calendarAlarme1,evento.getIdAlarme1(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()),1);
+                            alarmManagerUtil.salvarAlarme(calendarAlarme2,evento.getIdAlarme2(),evento.getTituloEvento(),(evento.getDataEvento()+" às "+evento.getHorarioevento()),2);
                         }
                         finish();
                     }

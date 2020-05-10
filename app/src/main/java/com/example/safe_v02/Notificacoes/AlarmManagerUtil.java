@@ -19,13 +19,19 @@ public class AlarmManagerUtil {
         this.context=context;
     }
 
-    public void salvarAlarme(Calendar c,int idalarme, String titulo, String descricao) {
+    public void salvarAlarme(Calendar c,int idAlarme, String titulo, String descricao,int tipoAlarme) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlertReceiver.class);
         intent.putExtra("Titulo",titulo);
         intent.putExtra("Descricao",descricao);
-        intent.putExtra("idAlarme",idalarme);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idalarme, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        if(tipoAlarme==1){
+            intent.putExtra("idAlarme1",idAlarme);
+        }
+        else{
+            intent.putExtra("idAlarme2",idAlarme);
+        }
+        intent.putExtra("tipoAlarme",tipoAlarme);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idAlarme, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         if (c.before(Calendar.getInstance())) {
             c.add(Calendar.DATE, 1);
@@ -33,12 +39,18 @@ public class AlarmManagerUtil {
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 
-    public void cancelarAlarme(int idAlarme,String titulo,String descricao) {
+    public void cancelarAlarme(int idAlarme,String titulo,String descricao,int tipoAlarme) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlertReceiver.class);
         intent.putExtra("Titulo",titulo);
         intent.putExtra("Descricao",descricao);
-        intent.putExtra("idAlarme",idAlarme);
+        if(tipoAlarme==1){
+            intent.putExtra("idAlarme1",idAlarme);
+        }
+        else{
+            intent.putExtra("idAlarme2",idAlarme);
+        }
+        intent.putExtra("tipoAlarme",tipoAlarme);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idAlarme, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.cancel(pendingIntent);
 
@@ -49,17 +61,26 @@ public class AlarmManagerUtil {
         ArrayList<Evento> eventos = new ArrayList<Evento>(eventoDAO.obterTodos());
         for(int i=0;i<eventos.size();i++){
             if(eventos.get(i).getIdAlarme1()!=0){
-                Evento evento = new Evento();
-                evento=eventos.get(i);
-                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                Intent intent = new Intent(context, AlertReceiver.class);
-                intent.putExtra("Titulo",evento.getTituloEvento());
-                intent.putExtra("Descricao",evento.getDataEvento()+" às "+evento.getHorarioevento());
-                intent.putExtra("idAlarme",evento.getIdAlarme1());
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, evento.getIdAlarme1(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, evento.getIdAlarme1(), pendingIntent);
+                Evento evento = eventos.get(i);
+                recriarAlarme(evento.getIdAlarme2(),evento.getTituloEvento(),evento.getDataEvento()+" às "+evento.getHorarioevento(),2);
             }
         }
+    }
+
+    public void recriarAlarme(int idAlarme,String titulo,String descricao,int tipoAlarme){
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, AlertReceiver.class);
+        intent.putExtra("Titulo",titulo);
+        intent.putExtra("Descricao",descricao);
+        if(tipoAlarme==1){
+            intent.putExtra("idAlarme1",idAlarme);
+        }
+        else{
+            intent.putExtra("idAlarme2",idAlarme);
+        }
+        intent.putExtra("tipoAlarme",tipoAlarme);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, idAlarme, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, idAlarme, pendingIntent);
     }
 
 }
