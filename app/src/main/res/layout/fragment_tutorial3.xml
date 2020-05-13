@@ -23,26 +23,13 @@
         android:layout_width="150dp"
         android:layout_height="250dp"
         android:layout_below="@id/txtTutorial3"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
         android:adjustViewBounds="false"
         android:cropToPadding="true"
         android:scaleType="centerInside"
-        android:src="@drawable/print_inicio" />
-
-    <ImageView
-        android:id="@+id/imgTutorial2"
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:layout_below="@id/txtTutorial3"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="10dp"
-        android:adjustViewBounds="false"
-        android:cropToPadding="true"
-        android:scaleType="centerInside"
-        android:src="@drawable/print_drawer" />
+        android:src="@drawable/printinicio" />
 
     <TextView
         android:layout_width="wrap_content"

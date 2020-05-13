@@ -119,7 +119,7 @@ public class TelaAnotacoes extends AppCompatActivity {
             txtAviso.setText(" ");
         }
         else{
-            txtAviso.setText("Para adicionar uma nova anotação clique nota botão + no canto inferior direito.");
+            txtAviso.setText(R.string.MsgAnotacoes);
         }
     }
 

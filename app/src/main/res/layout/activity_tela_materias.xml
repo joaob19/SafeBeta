@@ -44,6 +44,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtAvisoMaterias"
         android:gravity="center"
+        android:padding="10dp"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

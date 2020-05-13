@@ -75,7 +75,7 @@
         - Eduardo Paulo Wagner;\n
         - Eduardo Zortea;\n
         - João Vitor Silveira Branco;\n
-        - Luis Gustavo dos Santos;\n
+        - Luis Gustavo dos Santos.\n
         \n
         Para tirar dúvidas entre em contato com algum destes alunos.
     </string>
@@ -89,15 +89,15 @@
     </string>
 
     <string name="tutorial3">
-        Na tela de início do app você poderá gerenciar seus horários de aula ou ver as estatísticas das matérias.\n
-       Ao clicar no icone no canto superior esquerdo da tela ou arrastar para direita a partir da margem esquerda da tela
-       você irá abrir o drawer de ferramentas do app onde estão as outras ferramentas.\n
-       Agora você pode começar a utilizar o aplicativo e desfrutar das ferramentas que disponibilizamos para você.\n
+            Na tela inicial do app você vai encontrar a lista com todas as ferramnetas disponivel.\n
+            Ao clicar sobre uma opção, você será encaminhado para uma nova tela pertencente à aquela ferramenta.
+        Nós da equipe do S.A.F.E desejamos à você uma ótima experiência de uso do nossso app e vamos trabalhar para deixa-lo cada vez melhor.\n
+            Aproveite!!
     </string>
 
     <string name="MsgMaterias">
         Você não possui nenhuma matéria cadastrada. Para cadastrar uma nova matérias basta clicar no botão
-        "Adicionar matéria" na parte inferior da tela.
+        "+" na parte inferior da tela.
     </string>
     <string name="MsgEventos">
         Você não possui nenhum evento cadastrado. Para cadastrar um novo evento basta clicar no botão
@@ -107,12 +107,8 @@
         Você não possui nenhuma anotação. Para adicionar uma nova anotação basta clicar no botão
         "+" no canto inferior direito.
     </string>
-    <string name="MsgEstatisticas">
-        Não há nenhuma estatística para ser apresentada pois não existe nenhuma matéria cadastrada.
-        Para cadastrar matérias é necessário que você vá até a tela de matérias.
-    </string>
     <string name="MsgHorarios">
         Você não possui nenhum horário de aula salvo neste dia.
-        Para que poder adicionar seus horários de aula você deve clicar no botão "Adicionar aula" na parte inferior da tela.
+        Para que poder adicionar seus horários de aula você deve clicar no botão "+" na parte inferior da tela.
     </string>
 </resources>
