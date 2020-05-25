@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="isLightTheme">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/Branco</item>
+        <item name="android:statusBarColor">@color/AzulMedio</item>
+        <item name="android:navigationBarColor">@color/Branco</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
 </resources>

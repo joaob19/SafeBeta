@@ -4,16 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Gerenciar_Conta.GerenciarConta"
-    android:background="@color/AzulMedio">
+    tools:context=".Gerenciar_Conta.GerenciarConta">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarGerConta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/AzulMedio"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        android:background="@color/Branco"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/fotoDePerfil"
@@ -42,9 +40,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:text="Nome de usuário:"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/Branco"/>
-
+            android:layout_marginLeft="10dp"/>
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -52,7 +48,6 @@
            android:minHeight="50dp"
            android:id="@+id/txtNomeUsuario"
            android:text="Nome de usuário"
-           android:textColor="@color/Branco"
            android:clickable="true"
            android:onClick="editarInfo"
            android:focusable="true"
@@ -65,9 +60,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:text="Email de usuário:"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/Branco"/>
-
+            android:layout_marginLeft="10dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,7 +68,6 @@
             android:minHeight="50dp"
             android:id="@+id/txtEmail"
             android:text="Email de usuário"
-            android:textColor="@color/Branco"
             android:clickable="true"
             android:onClick="editarInfo"
             android:focusable="true"
@@ -88,9 +80,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:text="O que está cursando:"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/Branco"/>
-
+            android:layout_marginLeft="10dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,7 +88,6 @@
             android:minHeight="50dp"
             android:id="@+id/txtCurso"
             android:text="O que está cursando"
-            android:textColor="@color/Branco"
             android:clickable="true"
             android:onClick="editarInfo"
             android:focusable="true"
@@ -111,8 +100,7 @@
             android:text="Nome da instituição:"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/Branco"/>
+            android:layout_marginLeft="10dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -121,7 +109,6 @@
             android:id="@+id/txtInstituicao"
             android:text="Nome da instituição"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/Branco"
             android:clickable="true"
             android:onClick="editarInfo"
             android:focusable="true"
@@ -129,7 +116,5 @@
             android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
-
-
 
 </android.widget.RelativeLayout>

@@ -3,8 +3,10 @@ package com.example.safe_v02.TelaDeAbertura;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 
 import com.example.safe_v02.Main.MainActivity;
 import com.example.safe_v02.R;
@@ -15,6 +17,11 @@ public class StartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+        decorView.setSystemUiVisibility(uiOptions);
+
         setContentView(R.layout.activity_start);
         new Handler().postDelayed(new Runnable(){
             @Override
