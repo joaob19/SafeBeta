@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 
 public class Conexao extends SQLiteOpenHelper {
    private static final String nomeDoBanco = "BancoSafe";
-   private static final int versaoBanco = 1;
+   private static final int versaoBanco = 2;
 
    public Conexao(Context context) {
       super(context, "BancoSafe", (CursorFactory)null, 1);
@@ -22,5 +22,6 @@ public class Conexao extends SQLiteOpenHelper {
 
    @Override
    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
    }
 }

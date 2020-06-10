@@ -48,7 +48,8 @@ public class EventoDAO {
       values.put("descricao", evento.getDescricao());
       values.put("idAlarme1", evento.getIdAlarme1());
       values.put("idAlarme2", evento.getIdAlarme2());
-      return this.banco.insert("eventos", (String)null, values);
+
+       return this.banco.insert("eventos", (String)null, values);
    }
 
    public ArrayList obterTodos() {
@@ -66,7 +67,7 @@ public class EventoDAO {
          evento.setDescricao(cursor.getString(6));
          evento.setIdAlarme1(cursor.getInt(7));
          evento.setIdAlarme2(cursor.getInt(8));
-         eventos.add(evento);
+          eventos.add(evento);
       }
       return eventos;
    }

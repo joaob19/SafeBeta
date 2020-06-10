@@ -12,8 +12,6 @@ import com.example.safe_v02.Agenda_de_eventos.EventoDAO;
 
 import java.util.ArrayList;
 
-
-
     public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -27,8 +25,19 @@ import java.util.ArrayList;
         }
         else if(tipoalarme==2){
             id = intent.getIntExtra("idAlarme2",-1);
+
+            EventoDAO eventoDAO = new EventoDAO(context);
+            ArrayList<Evento> eventos = new ArrayList<Evento>(eventoDAO.obterTodos());
+            for(int i=0;i<eventos.size();i++){
+                if(eventos.get(i).getIdAlarme2()==id){
+                    Evento evento = eventos.get(i);
+                    eventoDAO.excluir(evento);
+                }
+            }
+
         }
         notificationHelper.getManager().notify(id, nb.build());
+
 
     }
 
