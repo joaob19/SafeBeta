@@ -6,7 +6,7 @@
     tools:context=".Tutorial.Tutorial2">
 
     <TextView
-        android:id="@+id/txtTutorial2"
+        android:id="@+id/txtTutorial3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -15,45 +15,37 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="50dp"
-        android:text="Agora vamos cadastrar sua primeira matéria. A partir das matérias você poderá adicionar suas notas, criar horários de aula , eventos e também, ver suas estatísticas."
+        android:text="Pronto!! Agora você ja tem o necessário para começar a usar as ferramentas do app."
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtTutorialNomeMateria"
-        android:inputType="textCapWords|textCapSentences"
-        android:layout_below="@id/txtTutorial2"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:hint="Nome da matéria"
-        />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerTutorialTipoMedia"
-        android:layout_below="@id/txtTutorialNomeMateria"
+    <ImageView
+        android:id="@+id/imgTutorial1"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/txtTutorial3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        style="@style/Widget.AppCompat.Spinner.Underlined"
-        />
+        android:adjustViewBounds="false"
+        android:cropToPadding="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/printinicio" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTutorialQntdNotas"
-        android:layout_below="@id/spinnerTutorialTipoMedia"
-        android:inputType="numberDecimal"
-        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textAlignment="center"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:hint="Qntd de notas"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/imgTutorial1"
+        android:text="@string/tutorial3"
         />
 
     <Button
-        android:id="@+id/btnTutorial2"
+        android:id="@+id/btnTutorial3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
@@ -61,6 +53,5 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Próximo"
-        />
+        android:text="Começar a usar" />
 </RelativeLayout>

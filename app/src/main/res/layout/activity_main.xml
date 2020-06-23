@@ -53,6 +53,7 @@
         </RelativeLayout>
 
         <GridLayout
+            android:layout_marginTop="20dp"
             android:columnCount="2"
             android:rowCount="3"
             android:alignmentMode="alignMargins"
@@ -272,43 +273,6 @@
                         android:layout_height="40dp"
                         android:gravity="center"
                         android:text="Matérias"/>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_conta"
-                android:onClick="openActivity"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
-                android:layout_margin="12dp"
-                >
-
-                <LinearLayout
-                    android:padding="10dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_account_circle_black_24dp"/>
-
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:gravity="center"
-                        android:text="Usuário"/>
 
                 </LinearLayout>
 

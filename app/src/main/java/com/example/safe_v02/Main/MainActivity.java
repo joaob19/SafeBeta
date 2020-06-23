@@ -17,7 +17,6 @@ import com.example.safe_v02.Ferramentas_de_calculo.InicioCalculadora;
 import com.example.safe_v02.GoogleTradutor.GoogleTradutor;
 import com.example.safe_v02.Horarios.Horarios;
 import com.example.safe_v02.Materias_e_notas.TelaMaterias;
-import com.example.safe_v02.Gerenciar_Conta.GerenciarConta;
 import com.example.safe_v02.R;
 import com.example.safe_v02.Tutorial.MainTutorial;
 
@@ -57,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.card_materias:
                 intent = new Intent(MainActivity.this,TelaMaterias.class);
-                startActivity(intent);
-                break;
-            case R.id.card_conta:
-                intent = new Intent(MainActivity.this,GerenciarConta.class);
                 startActivity(intent);
                 break;
         }

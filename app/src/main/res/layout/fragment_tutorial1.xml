@@ -6,7 +6,7 @@
     tools:context=".Tutorial.Tutorial1">
 
     <TextView
-        android:id="@+id/txtTutorial1"
+        android:id="@+id/txtTutorial2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -15,47 +15,45 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="50dp"
-        android:text="Para começar, informe algumas informações sobre você nos campos abaixo"
-    />
+        android:text="Agora vamos cadastrar sua primeira matéria. A partir das matérias você poderá adicionar suas notas, criar horários de aula , eventos e também, ver suas estatísticas."
+        />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTutorialNome"
-        android:inputType="textCapWords|textCapSentences|textPersonName"
-        android:hint="Digite seu nome"
-        android:layout_below="@id/txtTutorial1"
-        android:layout_margin="10dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtTutorialEmail"
-        android:inputType="textEmailAddress"
-        android:hint="Digite seu email"
-        android:layout_below="@id/txtTutorialNome"
-        android:layout_margin="10dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtTutorialCurso"
+        android:id="@+id/txtTutorialNomeMateria"
         android:inputType="textCapWords|textCapSentences"
-        android:hint="Digite o que você está cursando"
-        android:layout_below="@id/txtTutorialEmail"
-        android:layout_margin="10dp"/>
+        android:layout_below="@id/txtTutorial2"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Nome da matéria"
+        />
 
-    <EditText
+    <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtTutorialInstituicao"
-        android:inputType="textCapWords|textCapSentences"
-        android:hint="Digite o nome da sua instituição de ensino"
-        android:layout_below="@id/txtTutorialCurso"
-        android:layout_margin="10dp"/>
+        android:id="@+id/spinnerTutorialTipoMedia"
+        android:layout_below="@id/txtTutorialNomeMateria"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTutorialQntdNotas"
+        android:layout_below="@id/spinnerTutorialTipoMedia"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Qntd de notas"
+        />
 
     <Button
-        android:id="@+id/btnTutorial1"
+        android:id="@+id/btnTutorial2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
