@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.safe_v02">
+    package="com.example.safebeta">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
@@ -13,49 +13,49 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Horarios.Horarios"
-            android:parentActivityName=".Main.MainActivity" />
+            android:name="com.example.safebeta.Horarios.Horarios"
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
         <activity
-            android:name=".GoogleTradutor.GoogleTradutor"
-            android:parentActivityName=".Main.MainActivity" />
-        <activity android:name=".Tutorial.MainTutorial" />
+            android:name="com.example.safebeta.GoogleTradutor.GoogleTradutor"
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
+        <activity android:name="com.example.safebeta.Tutorial.MainTutorial" />
         <activity
-            android:name=".Agenda_de_eventos.InfoEvento"
-            android:parentActivityName=".Agenda_de_eventos.MeusEventos" />
+            android:name="com.example.safebeta.Agenda_de_eventos.InfoEvento"
+            android:parentActivityName="com.example.safebeta.Agenda_de_eventos.MeusEventos" />
         <activity
-            android:name=".Materias_e_notas.TelaNotas"
-            android:parentActivityName=".Materias_e_notas.TelaMaterias" />
+            android:name="com.example.safebeta.Materias_e_notas.TelaNotas"
+            android:parentActivityName="com.example.safebeta.Materias_e_notas.TelaMaterias" />
         <activity
-            android:name=".Materias_e_notas.TelaMaterias"
-            android:parentActivityName=".Main.MainActivity" />
+            android:name="com.example.safebeta.Materias_e_notas.TelaMaterias"
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
         <activity
             android:name=".Gerenciar_Conta.GerenciarConta"
-            android:parentActivityName=".Main.MainActivity" />
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
         <activity
-            android:name=".Agenda_de_eventos.CadastrarEvento"
-            android:parentActivityName=".Agenda_de_eventos.MeusEventos" />
+            android:name="com.example.safebeta.Agenda_de_eventos.CadastrarEvento"
+            android:parentActivityName="com.example.safebeta.Agenda_de_eventos.MeusEventos" />
         <activity
-            android:name=".Agenda_de_eventos.MeusEventos"
-            android:parentActivityName=".Main.MainActivity" />
-        <activity android:name=".Main.MainActivity" />
+            android:name="com.example.safebeta.Agenda_de_eventos.MeusEventos"
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
+        <activity android:name="com.example.safebeta.Main.MainActivity" />
         <activity
-            android:name=".Ferramentas_de_calculo.InicioCalculadora"
-            android:parentActivityName=".Main.MainActivity" />
+            android:name="com.example.safebeta.Ferramentas_de_calculo.InicioCalculadora"
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
         <activity
-            android:name=".Bloco_de_notas.TelaEditorTexto"
-            android:parentActivityName=".Bloco_de_notas.TelaAnotacoes" />
+            android:name="com.example.safebeta.Bloco_de_notas.TelaEditorTexto"
+            android:parentActivityName="com.example.safebeta.Bloco_de_notas.TelaAnotacoes" />
         <activity
-            android:name=".Bloco_de_notas.TelaAnotacoes"
-            android:parentActivityName=".Main.MainActivity" />
-        <activity android:name=".TelaDeAbertura.StartActivity">
+            android:name="com.example.safebeta.Bloco_de_notas.TelaAnotacoes"
+            android:parentActivityName="com.example.safebeta.Main.MainActivity" />
+        <activity android:name="com.example.safebeta.TelaDeAbertura.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Notificacoes.AlertReceiver" />
-        <receiver android:name=".Notificacoes.BootSetter">
+        <receiver android:name="com.example.safebeta.Notificacoes.AlertReceiver" />
+        <receiver android:name="com.example.safebeta.Notificacoes.BootSetter">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
