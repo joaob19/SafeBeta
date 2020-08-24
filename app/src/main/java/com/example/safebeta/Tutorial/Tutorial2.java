@@ -23,7 +23,7 @@ public class Tutorial2 extends Fragment {
         btnTutorial3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("com.example.safebeta", Context.MODE_PRIVATE);
                 sharedPreferences.edit().putBoolean("primeiroUso",false).apply();
                 getActivity().finish();
 

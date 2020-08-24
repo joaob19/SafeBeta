@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Verifica se é o primeirouso do app e mostra uma mensagem para o usuario cadastrar suas informações
     public void verificaPrimeiroUso(){
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safe_v02", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.safebeta", Context.MODE_PRIVATE);
         boolean primeiroUso = sharedPreferences.getBoolean("primeiroUso",true);
 
         if(primeiroUso==true){
