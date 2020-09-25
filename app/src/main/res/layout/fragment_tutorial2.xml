@@ -15,7 +15,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="50dp"
-        android:text="Pronto!! Agora você ja tem o necessário para começar a usar as ferramentas do app."
+        android:text="Pronto!! Agora você já tem o necessário para começar a usar as ferramentas do app."
         />
 
     <ImageView

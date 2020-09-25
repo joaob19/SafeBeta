@@ -3,9 +3,6 @@
     <string name="drawerOpen">drawerOpen</string>
     <string name="drawerClose">drawerClose</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string-array name="array_materias">
         <item>Selecione uma matéria</item>
         <item>Física</item>
@@ -89,14 +86,14 @@
     </string>
 
     <string name="tutorial3">
-            Na tela inicial do app você vai encontrar a lista com todas as ferramnetas disponivel.\n
+            Na tela inicial do app você vai encontrar a lista com todas as ferramentas disponíveis.\n
             Ao clicar sobre uma opção, você será encaminhado para uma nova tela pertencente à aquela ferramenta.
-        Nós da equipe do S.A.F.E desejamos à você uma ótima experiência de uso do nossso app e vamos trabalhar para deixa-lo cada vez melhor.\n
+        Nós da equipe do S.A.F.E desejamos à você uma ótima experiência de uso do nosso app e vamos trabalhar para deixa-lo cada vez melhor.\n
             Aproveite!!
     </string>
 
     <string name="MsgMaterias">
-        Você não possui nenhuma matéria cadastrada. Para cadastrar uma nova matérias basta clicar no botão
+        Você não possui nenhuma matéria cadastrada. Para cadastrar uma nova matéria basta clicar no botão
         "+" na parte inferior da tela.
     </string>
     <string name="MsgEventos">
