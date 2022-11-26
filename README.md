@@ -1,4 +1,4 @@
-# SafeBeta
+# S.A.F.E (Sistema autônomo de ferramentas estudantis)
 
 Este projeto foi o objetivo do projeto integrador do Curso Técnico em informática do Instituto Federal de Santa Catarina Campus Gaspar.
 
